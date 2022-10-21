@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryVideoController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[IndexController::class,'index']);
 
-Route::get('/upload', function () {
-    return view('video.create');
+
+Route::prefix('videos')->group(function () {
+    Route::get('/', [IndexController::class, 'index'])->name('videos.index');
+
+    Route::get('/create', [VideoController::class, 'create'])->name('videos.create');
+    Route::post('/store', [VideoController::class, 'store'])->name('videos.store');
+    Route::get('/show/{video}',[VideoController::class,'show'])->name('videos.show');
+    Route::get('/edit/{video}',[VideoController::class,'edit'])->name('videos.edit');
+    Route::put('/update/{video}',[VideoController::class,'update'])->name('videos.update');
+
+    Route::get('/categories/{category}/videos',[CategoryVideoController::class,'index'])->name('categories.videos.index');
 });
-
-
-

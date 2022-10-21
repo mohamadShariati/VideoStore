@@ -13,13 +13,21 @@ class Video extends Model
         'name',
         'time',
         'description',
-        'tumbnail',
+        'tumbnail','category_id','slug',
     ];
 
-    public function getTimeAttribute($value)
+    public function getTimeInHumanAttribute()
     {
-        return gmdate("i:s",$value);
+        return gmdate("i:s",$this->value);
     }
 
-    
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(category::class);
+    }
 }

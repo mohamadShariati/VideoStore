@@ -12,15 +12,23 @@
         <div class="video-item">
             <div class="thumb">
                 <div class="hover-efect"></div>
-                <small class="time">{{$video->time}}</small>
+                <small class="time">{{$video->TimeInHuman}}</small>
                 <a href="#"><img src="{{$video->tumbnail}}" alt=""></a>
             </div>
             <div class="video-info">
-                <a href="#" class="title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ </a>
-                <a class="channel-name" href="#">{{$video->name}} <span>
+                <a href="{{route('videos.show',$video->slug)}}" class="title">{{$video->description}}</a>
+                <a href="{{route('videos.edit',$video->slug)}}">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                <a class="channel-name" href="">{{$video->name}} <span>
                         <i class="fa fa-check-circle"></i></span></a>
                 <span class="views"><i class="fa fa-eye"></i>2.8M بازدید </span>
                 <span class="date"><i class="fa fa-clock-o"></i>{{$video->created_at->diffForHumans()}}</span>
+                    <a href="{{route('categories.videos.index',$video->category?->slug ?? 'fun')}}  ">
+                        <span class="date"><i class="fa fa-tag"></i>{{$video->category?->name }}</span>
+                    </a>
+                
+
             </div>
         </div>
     </div>
@@ -35,15 +43,20 @@
         <div class="video-item">
             <div class="thumb">
                 <div class="hover-efect"></div>
-                <small class="time">{{$mostView->time}}</small>
-                <a href="#"><img src="{{$mostView->tumbnail}}" alt=""></a>
+                <small class="time">{{$mostView->TimeInHuman}}</small>
+                <a href="{{route('videos.show',$mostView->slug)}}"><img src="{{$mostView->tumbnail}}" alt=""></a>
             </div>
             <div class="video-info">
-                <a href="#" class="title">{{ Str::limit($mostView->description,50, '...')  }}</a>
-                <a class="channel-name" href="#">{{Str::limit($mostView->name,10,'...')  }}<span>
+                <a href="{{route('videos.show',$mostView->slug)}}" class="title">{{ Str::limit($mostView->description,50, '...')  }}</a>
+                <a href="{{route('videos.edit',$video->slug)}}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                <a class="channel-name" href="">{{Str::limit($mostView->name,10,'...')  }}<span>
                         <i class="fa fa-check-circle"></i></span></a>
                 <span class="views"><i class="fa fa-eye"></i>2.8M بازدید </span>
                 <span class="date"><i class="fa fa-clock-o"></i>{{$mostView->created_at->diffForHumans() }} </span>
+                <span class="date"><i class="fa fa-tag"></i>{{$video->category?->name }}</span>
+
             </div>
         </div>
     </div>
@@ -62,15 +75,20 @@
     <div class="video-item">
         <div class="thumb">
             <div class="hover-efect"></div>
-            <small class="time">{{$mostPup->time}}</small>
+            <small class="time">{{$mostPup->TimeInHuman}}</small>
             <a href="#"><img src="{{$mostPup->tumbnail}}" alt=""></a>
         </div>
         <div class="video-info">
             <a href="#" class="title">{{Str::limit($mostPup->description,50,'...')}}</a>
-            <a class="channel-name" href="#">{{$mostPup->name}} <span>
+            <a href="{{route('videos.edit',$video->slug)}}">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+            <a class="channel-name" href="">{{$mostPup->name}} <span>
                     <i class="fa fa-check-circle"></i></span></a>
             <span class="views"><i class="fa fa-eye"></i>2.8M بازدید </span>
             <span class="date"><i class="fa fa-clock-o"></i>{{$mostPup->created_at->diffForHumans()}}</span>
+            <span class="date"><i class="fa fa-tag"></i>{{$video->category?->name }}</span>
+
         </div>
     </div>
 </div>
