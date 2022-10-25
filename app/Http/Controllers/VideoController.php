@@ -51,9 +51,10 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
+        $relatedVideo=Video::where('category_id',$video->category_id)->inRandomOrder()->get()->take(8);
         
         $allVideos=Video::all()->random(6);
-        return view('video.show',compact('video','allVideos'));
+        return view('video.show',compact('video','relatedVideo'));
     }
 
     /**

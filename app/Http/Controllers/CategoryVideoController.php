@@ -10,7 +10,7 @@ class CategoryVideoController extends Controller
 {
     public function index(Category $category)
     {
-        $videos=$category->videos;
+        $videos=$category->videos()->paginate();
         return view('video.index',compact('videos','category'));
 
         // $videos=Video::where('category_id',$category);

@@ -125,11 +125,11 @@
     <div class="col-md-4">
         <div id="related-posts">
 
-            @foreach ($allVideos as $videos)
+            @foreach ($relatedVideo as $videos)
                             <!-- video item -->
             <div class="related-video-item">
                 <div class="thumb">
-                    <small class="time">{{$videos->time}}</small>
+                    <small class="time">{{$videos->TimeInHuman}}</small>
                     <a href="#"><img src="demo_img/v1.png" alt=""></a>
                 </div>
                 <a href="{{route('videos.show',$videos->slug)}}" class="title">{{$videos->description}}</a>

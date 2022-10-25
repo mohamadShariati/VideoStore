@@ -20,7 +20,9 @@ class VideoFactory extends Factory
             'name'=>fake()->name(),
             'time'=>fake()->randomNumber(3),
             'description'=>fake()->realText(100),
-            'tumbnail'=>"https://loremflickr.com/446/240/world?random=3".rand(1,30)
+            'tumbnail'=>"https://loremflickr.com/446/240/world?random=3".rand(1,30),
+            'category_id'=>1,
+            'slug'=>'s'.rand(100,200)
         ];
     }
 }

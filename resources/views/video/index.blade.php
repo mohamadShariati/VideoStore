@@ -31,7 +31,9 @@
     @endforeach
 
 </div>
-
+<div class="text-center">
+  {{$videos->links()}}
+</div>
 
 @endsection
             

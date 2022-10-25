@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\CategoryVideoController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideoController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryVideoController;
 
 
 /*
@@ -29,4 +31,12 @@ Route::prefix('videos')->group(function () {
     Route::put('/update/{video}',[VideoController::class,'update'])->name('videos.update');
 
     Route::get('/categories/{category}/videos',[CategoryVideoController::class,'index'])->name('categories.videos.index');
+});
+
+Route::get('/', function () {
+    // $response=Auth::attempt(['email' => 'meaghan.robel@example.net', 'password' => 'password']);
+    // dd($response);
+
+    Auth::onceBasic();
+    dd(Auth::check());
 });
