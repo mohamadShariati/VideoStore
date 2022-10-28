@@ -1,12 +1,12 @@
 <?php
 
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\CategoryVideoController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +19,7 @@ use App\Http\Controllers\CategoryVideoController;
 |
 */
 
-
-
-Route::prefix('videos')->group(function () {
+Route::middleware('auth')->prefix('videos')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('videos.index');
 
     Route::get('/create', [VideoController::class, 'create'])->name('videos.create');
@@ -37,6 +35,12 @@ Route::get('/', function () {
     // $response=Auth::attempt(['email' => 'meaghan.robel@example.net', 'password' => 'password']);
     // dd($response);
 
-    Auth::onceBasic();
-    dd(Auth::check());
+    // Auth::onceBasic();
+    // dd(Auth::check());
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
